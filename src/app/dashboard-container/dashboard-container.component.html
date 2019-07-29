@@ -1,0 +1,14 @@
+<div *ngIf="searchTerm !== undefined" [className]="searchTerm.toLowerCase()">
+  <h3>{{ searchTerm }}</h3>
+  <ul *ngIf="items !== null; else noResults">
+    <li *ngFor="let item of items | slice:0:limit">
+      <a [href]="item.link" [innerHTML]="item.title"></a><br>
+      <span class="date">letzte Akt. am {{ item.last_activity_date * 1000 | date:'dd.MM.yy - HH:mm' }}</span>
+      <a *ngFor="let tag of item.tags" [href]="'https://stackoverflow.com/questions/tagged/' + tag" class="tag">{{ tag }}</a>
+    </li>
+    <ng-content></ng-content>
+  </ul>
+  <ng-template #noResults>
+    Aktuell können keine Daten angezeigt werden.
+  </ng-template>
+</div>

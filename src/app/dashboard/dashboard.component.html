@@ -1,0 +1,11 @@
+<div class="flex--md">
+  <app-dashboard-container searchTerm="TypeScript"></app-dashboard-container>
+  <app-dashboard-container searchTerm="Angular2"></app-dashboard-container>
+  <app-dashboard-container searchTerm="Weather" [limit]="5">
+    <li *ngFor="let item of weatherItems | shuffle | slice:0:5">
+      {{ item['Temp. A.'] }} ° C - Wind: {{ item.Wind }} m/s
+      <div class="direction" [style.transform]="'rotate(' + (+item.Richtung - 270) + 'deg)'"></div><br>
+      <span class="date">{{ item.Datum }} - {{ item.Zeit }}</span>
+    </li>
+  </app-dashboard-container>
+</div>

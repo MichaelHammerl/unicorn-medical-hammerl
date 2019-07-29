@@ -1,0 +1,79 @@
+
+.tag {
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  margin-right: 5px;
+  background-color: $gray-mystic;
+  color: $tm-boston-blue;
+}
+
+.date {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: $gray-medium;
+  margin-right: 15px;
+}
+
+.direction {
+  display: inline-block;
+
+  &:before {
+    content: "\027A4";
+  }
+}
+
+app-dashboard-container {
+  min-width: 0;
+  margin: 20px;
+
+  &:nth-child(1), &:nth-child(2) {
+    flex-basis: 38%;
+  }
+
+  &:nth-child(3) {
+    flex-basis: 24%;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 8px 12px;
+    background-color: $boston-blue;
+    color: $white;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    li {
+      list-style: none;
+      border: 1px $gray-mystic solid;
+      padding: 6px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .weather {
+    // Algorithmus zur abwechselnden Darstellung von untereinander angehängten Listenelementen
+    $listItems: 5;
+
+    li {
+      @for $i from 1 through $listItems {
+        &:nth-child(#{$i}) {
+          order: #{1 + ($i - 1) * 2};
+        }
+      }
+      @for $i from $listItems + 1 through $listItems * 2 {
+        &:nth-child(#{$i}) {
+          order: #{2 + ($i - 1 - $listItems) * 2};
+        }
+      }
+    }
+  }
+
+}
+
+
